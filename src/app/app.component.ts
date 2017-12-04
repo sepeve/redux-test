@@ -14,7 +14,7 @@ import { User } from './entities/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'app works!';
   users: Observable<User[]>;
 
   constructor(private store: Store<fromRoot.State>) { }
