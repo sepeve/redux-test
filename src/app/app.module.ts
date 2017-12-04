@@ -1,9 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers, metaReducers } from './@redux/index';
+import { UserEffects } from './@redux/effects'; 
+
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -11,10 +17,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([UserEffects])
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ UserService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
